@@ -14,7 +14,7 @@ public class Main {
 
     static String enemyName;
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
 
 
@@ -24,7 +24,6 @@ public class Main {
     + Race
     + Weapon
     */
-        runGame();
 
 
 /*
@@ -36,7 +35,7 @@ public class Main {
      */
     }
 
-    public static void runGame() {
+    public void runGame() {
         enterName();
         chooseCharacter();
 
@@ -44,7 +43,7 @@ public class Main {
     }
 
 
-    public static void chooseWeapon() {
+    public void chooseWeapon() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Choose a weapon:");
         System.out.println("1) Sword");
@@ -89,7 +88,7 @@ public class Main {
 
     }
 
-    public static void adventure() {
+    public void adventure() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("You are standing in a dimly-light room. \n From the faint flicker of the torch on the wall, you can see the moss-covered stones that cocoon you. \n A faint glow shines from each cardinal direction. Which way will you go?");
         System.out.println("(N)orth");
@@ -101,18 +100,21 @@ public class Main {
             case "north":
             case "n":
                 roomOne();
+            case "east":
+            case "e":
+                roomTwo();
         }
     }
 
 
-    public static void enterName() {
+    public void enterName() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("What is your name?");
         String name = userInput.nextLine();
         System.out.println("Welcome, " + name + ". Prepare for your doom or your rise to glory.");
     }
 
-    public static void chooseCharacter() {
+    public void chooseCharacter() {
         Scanner userInput = new Scanner(System.in);
 
         // prompt the user for their name
@@ -176,7 +178,7 @@ public class Main {
 
     }
 
-    public static void fight() {
+    public void fight() {
         while (enemyHealth > 0 && baseHealth > 0) {
 
             if (baseSpeed >= enemySpeed) {
@@ -205,7 +207,7 @@ public class Main {
 
     }
 
-    public static void roomOne() {
+    public void roomOne() {
         Scanner userInput = new Scanner(System.in);
         enemyHealth = 25;
         enemySpeed = 12;
@@ -217,22 +219,25 @@ public class Main {
             case "look at skeleton":
                 Random random = new Random();
                 int max = 8, min = 4;
-                enemyDamage = random.nextInt(max - min);
+                enemyDamage = random.nextInt((max - min)+1) + min;
                 System.out.println("You step nearer the skeleton for a closer look. \n Cobwebs wisp over the bones like pale shrouds. \n The left hand grasps the jeweled hilt of a sword.");
                 wait(1500);
                 wakeSkeleton();
-
+                System.out.println("A new exit appears to the west. There are currently exists to the (s)outh and (w)est. Which way would you like to go?");
             case "poke skeleton":
             case "poke the skeleton":
             case "poke at the skeleton":
                 System.out.println("Like a weirdo, you prod the pile of bones. It feels like bones, shockingly. \n You get the feeling that the room is judging you for your choices.");
                 wakeSkeleton();
 
+            case "":
+            case "k":
+
 
         }
     }
 
-    public static void wait(int ms) {
+    public void wait(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
@@ -241,7 +246,7 @@ public class Main {
     }
 
 
-    public static void wakeSkeleton() {
+    public void wakeSkeleton() {
         Scanner userInput = new Scanner(System.in);
         wait(850);
         System.out.println("You get an ominous feeling from the inert bones.");
@@ -265,7 +270,23 @@ public class Main {
             case "n":
             case "no":
                 System.out.println("You flee back south. \n You hear the distinct bony jaw mutter 'wussy' as you disappear back whence you came.");
-                break;
+                adventure();
         }
+    }
+
+    public void roomTwo() {
+        Scanner userInput = new Scanner(System.in);
+        enemyHealth = 10;
+        enemySpeed = 20;
+        System.out.println("You head east into what appears to be some sort of apothecary. \n Vials of mysterious substances line rotting wooden tables along the wall, and dusty herbs hang dry from the beams overhead. \n A large rat is scurrying around on the floor.");
+        System.out.println("The rat clacks its long incisors threateningly at you.");
+
+    }
+
+    public void roomThree() {
+        Scanner userInput = new Scanner(System.in);
+        enemyHealth = 30;
+        enemySpeed = 8;
+        System.out.println("As you head deeper into the dungeons");
     }
 }
