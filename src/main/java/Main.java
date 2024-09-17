@@ -30,9 +30,14 @@ public class Main {
     --- Available Features ---
 
     + snarky responses
-    + inventory
+
 
      */
+
+        /*
+        --- Features to Come ---
+        + inventory
+         */
     }
 
     public void runGame() {
@@ -229,6 +234,9 @@ public class Main {
             case "poke at the skeleton":
                 System.out.println("Like a weirdo, you prod the pile of bones. It feels like bones, shockingly. \n You get the feeling that the room is judging you for your choices.");
                 wakeSkeleton();
+            case "lick skeleton":
+                System.out.println("Mmmm. Dusty bones. Hope you enjoyed that taste, Fido.");
+                wakeSkeleton();
 
             case "":
             case "k":
@@ -289,4 +297,4 @@ public class Main {
         enemySpeed = 8;
         System.out.println("As you head deeper into the dungeons");
     }
-}
+}}
